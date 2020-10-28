@@ -7,7 +7,7 @@ import getPrice
 import commands
 import Exemptions
 
-
+#wow
 #TODO Make sure that I will be screening multiple assets
 #TODO Make sure that my strategy will be refined
 #TODO Strategy should be 
