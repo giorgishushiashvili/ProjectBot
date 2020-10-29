@@ -1,17 +1,12 @@
 #Commond libraries
 import pandas as pd
 #my Libraries
-import getPrice
 import commands
 
+#TODO here I will have main logic of the program
 
-'''
-Structure of the logic:
-1) Get information from markets
-2) Analyse information
-3) Make decision
-'''
-def ShareTotal(depth,portion=250):
+
+def ShareTotal(depth,portion=500):
     #get bids data
     bids = pd.DataFrame(data=depth['bids'])
     bids.columns = ['Price','Quantity']
@@ -37,7 +32,8 @@ def ShareTotal(depth,portion=250):
     return round(ask/(ask+bid) * 100, 2)
 
 def Searching(client, ticker):
-    depth = commands.orderBook(client,ticker,maxlimit=5000)
-    shareTotal = ShareTotal(depth)
-    print(shareTotal)
+    depth = commands.orderBook(client,ticker,maxlimit=500)
+    shareTotal = ShareTotal(depth,portion=500)
+    BuyPrice = commands.BuyPrice(depth,192)
+    print("shareTotal " + str(shareTotal) + " Price " + str(BuyPrice))
     

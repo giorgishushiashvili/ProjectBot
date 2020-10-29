@@ -3,7 +3,6 @@
 import time
 #My Libraries
 import commands
-import getPrice
 import program
 import Exemptions
 
@@ -19,8 +18,8 @@ def main():
             ticker = "ETHUSDT"
             #connect to the client
             client = commands.connect()
-            if Trading == False:
-                program.Searching(client,ticker)
+            #if Trading == False:
+            program.Searching(client,ticker)
             print("_________________________")
 
             time.sleep(1)
