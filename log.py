@@ -1,5 +1,5 @@
 from csv import writer
-
+#TODO need implement this part to the software
 def additlog (file_name, list_of_elem):
     # Open file in append mode
     with open(file_name, 'a+', newline='') as write_obj:

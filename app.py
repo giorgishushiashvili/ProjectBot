@@ -1,8 +1,8 @@
 #imports
-from binance.client import Client
+#from binance.client import Client
 import time
 #My Libraries
-import API
+import commands
 import getPrice
 import program
 import Exemptions
@@ -15,12 +15,14 @@ def main():
     while True:
         try:
             print("                         ")
+            print(time.strftime("%H:%M:%S", time.localtime()))
             ticker = "ETHUSDT"
             #connect to the client
-            client = Client(API.API, API.SECRET)
+            client = commands.connect()
             if Trading == False:
                 program.Searching(client,ticker)
             print("_________________________")
+
             time.sleep(1)
 
         except Exception as e:
