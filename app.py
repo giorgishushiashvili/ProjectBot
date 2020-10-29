@@ -4,22 +4,22 @@ import time
 #My Libraries
 import API
 import getPrice
-import commands
+import program
 import Exemptions
 
-#wow
-#TODO Make sure that I will be screening multiple assets
-#TODO Make sure that my strategy will be refined
-#TODO Strategy should be 
+
+
 
 def main():
+    Trading = False
     while True:
         try:
             print("                         ")
             ticker = "ETHUSDT"
             #connect to the client
             client = Client(API.API, API.SECRET)
-            depth = commands.orderBook(client,ticker)
+            if Trading == False:
+                program.Searching(client,ticker)
             print("_________________________")
             time.sleep(1)
 

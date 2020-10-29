@@ -2,8 +2,8 @@ from binance.client import Client
 
 
 #Market orders
-def orderBook(client,ticker):
-    depth = client.get_order_book(symbol=ticker,limit=1000)
+def orderBook(client,ticker, maxlimit=1000):
+    depth = client.get_order_book(symbol=ticker,limit=maxlimit)
     return depth
 
 def getServerTime(client):
