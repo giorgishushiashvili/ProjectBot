@@ -7,7 +7,7 @@ import program
 import Exemptions
 
 
-
+#TODO make an paper trading bot
 
 def main():
     Trading = False
@@ -18,11 +18,18 @@ def main():
             ticker = "ETHUSDT"
             #connect to the client
             client = commands.connect()
-            #if Trading == False:
+            #TODO complate if statement finishing all edge cases
+            #TODO time.sleep(3) should be part of the if statement 
+            '''
+            if Trading == False:
+                if program.Searching(client,ticker):
+                    Trading = True
+            '''
+            #TODO when I will complate if statement delete this line of code
             program.Searching(client,ticker)
             print("_________________________")
 
-            time.sleep(1)
+            time.sleep(3)
 
         except Exception as e:
             Exemptions.handlingProcess(e)
