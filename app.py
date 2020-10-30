@@ -47,11 +47,6 @@ def main():
                     log.additlog("data.csv",data)
                 #I will need updates as fast as possible when I will be waiting for trades to close
                 time.sleep(1)
-
-
-            
-            #TODO when I will complate if statement delete this line of code
-            program.Searching(client,ticker)
             print("_________________________")
 
             
