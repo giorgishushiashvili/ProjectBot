@@ -1,21 +1,21 @@
-#imports
-#from binance.client import Client
 import time
 #My Libraries
 import commands
 import program
 import Exemptions
+import log
 
+#Global Variables
+Trading = False
+price = 0
+amount = 0
 
-#TODO make an paper trading bot
 
 def main():
     #Variables will be used in actual program
-    Trading = False
-    price = 0
-    #Variables that I will have to delete after testing phase
-    #TODO delete those variables
-    
+    global Trading
+    global price
+    global amount
     while True:
         try:
             print("                         ")
@@ -25,16 +25,36 @@ def main():
             client = commands.connect()
             #TODO complate if statement finishing all edge cases
             #TODO time.sleep(3) should be part of the if statement 
-            '''
+            
             if Trading == False:
                 if program.Searching(client,ticker):
+                    #TODO after the testing phase add Market Buy/Sell for the trades
                     Trading = True
-            '''
+                    depth = commands.orderBook(client,500)
+                    amount = round(commands.getBalance_USDT(client),0)
+                    price = commands.BuyPrice(depth,amount)
+                    data = [price]
+                    log.additlog("data.csv",data)
+                
+                #I do not need fast updates when searching for trades
+                time.sleep(3)
+            else:
+                if program.WaitingForTrade(client,price,ticker,amount):
+                    Trading = False
+                    amount = 0
+                    price = commands.BuyPrice(depth,amount)
+                    data = [price]
+                    log.additlog("data.csv",data)
+                #I will need updates as fast as possible when I will be waiting for trades to close
+                time.sleep(1)
+
+
+            
             #TODO when I will complate if statement delete this line of code
             program.Searching(client,ticker)
             print("_________________________")
 
-            time.sleep(3)
+            
 
         except Exception as e:
             Exemptions.handlingProcess(e)
