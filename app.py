@@ -10,7 +10,12 @@ import Exemptions
 #TODO make an paper trading bot
 
 def main():
+    #Variables will be used in actual program
     Trading = False
+    price = 0
+    #Variables that I will have to delete after testing phase
+    #TODO delete those variables
+    
     while True:
         try:
             print("                         ")
