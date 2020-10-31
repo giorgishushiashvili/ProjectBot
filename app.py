@@ -33,19 +33,17 @@ def main():
                     depth = commands.orderBook(client,ticker,500)
                     amount = round(commands.getBalance_USDT(client),0)
                     price = commands.BuyPrice(depth,amount)
-                    data = [price]
+                    data = [price,price*1.02,price*0.993]
                     log.additlog("data.csv",data)
                 
                 #I do not need fast updates when searching for trades
                 time.sleep(3)
             else:
-                PR = commands.SellPrice(depth,amount,USDT=False)
-                print("Price " + str(PR) + " TAKE PROFIT " + str(price * 1.02) + " Cut Losses " + str(price * 0.993))
                 if program.WaitingForTrade(client,price,ticker,amount):
                     Trading = False
                     amount = 0
-                    price = PR
-                    data = [PR]
+                    price = commands.SellPrice(depth,amount,USDT=False)
+                    data = [price]
                     log.additlog("data.csv",data)
                 #I will need updates as fast as possible when I will be waiting for trades to close
                 time.sleep(1)
