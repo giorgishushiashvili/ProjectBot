@@ -104,7 +104,6 @@ def SellPrice(depth, FinalAmount, USDT=True):
     bids['Quantity'] = bids['Quantity'].astype(float)
     bids['USDT'] = bids['Price'] * bids['Quantity']
     bids['cumsum'] = round(bids['USDT'].cumsum(),2)
-    print(bids)
     if USDT:
         amount = 0
         amountOther = 0

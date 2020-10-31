@@ -30,7 +30,7 @@ def main():
                 if program.Searching(client,ticker):
                     #TODO after the testing phase add Market Buy/Sell for the trades
                     Trading = True
-                    depth = commands.orderBook(client,500)
+                    depth = commands.orderBook(client,ticker,500)
                     amount = round(commands.getBalance_USDT(client),0)
                     price = commands.BuyPrice(depth,amount)
                     data = [price]
@@ -39,11 +39,13 @@ def main():
                 #I do not need fast updates when searching for trades
                 time.sleep(3)
             else:
+                PR = commands.SellPrice(depth,amount,USDT=False)
+                print("Price " + str(PR) + " TAKE PROFIT " + str(price * 1.02) + " Cut Losses " + str(price * 0.993))
                 if program.WaitingForTrade(client,price,ticker,amount):
                     Trading = False
                     amount = 0
-                    price = commands.BuyPrice(depth,amount)
-                    data = [price]
+                    price = PR
+                    data = [PR]
                     log.additlog("data.csv",data)
                 #I will need updates as fast as possible when I will be waiting for trades to close
                 time.sleep(1)

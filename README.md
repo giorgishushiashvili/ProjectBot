@@ -1,5 +1,4 @@
     ProjectBot
-
 This program is the Crypto Trading bot that will be able to generate revenue from market movement.
 
     Bot V 0.1
