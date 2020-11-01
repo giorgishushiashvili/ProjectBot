@@ -19,7 +19,8 @@ def main():
     while True:
         try:
             print("                         ")
-            print(time.strftime("%H:%M:%S", time.localtime()))
+            CurrentTime = time.strftime("%H:%M:%S", time.localtime())
+            print(CurrentTime)
             ticker = "ETHUSDT"
             #connect to the client
             client = commands.connect()
@@ -33,7 +34,7 @@ def main():
                     depth = commands.orderBook(client,ticker,500)
                     amount = round(commands.getBalance_USDT(client),0)
                     price = commands.BuyPrice(depth,amount)
-                    data = [price,price*1.02,price*0.993]
+                    data = [CurrentTime,price,price*1.02,price*0.993]
                     log.additlog("data.csv",data)
                 
                 #I do not need fast updates when searching for trades
@@ -43,10 +44,11 @@ def main():
                     Trading = False
                     amount = 0
                     price = commands.SellPrice(depth,amount,USDT=False)
-                    data = [price]
+                    data = [CurrentTime,price]
                     log.additlog("data.csv",data)
                 #I will need updates as fast as possible when I will be waiting for trades to close
-                time.sleep(1)
+                #TODO change time to 1 second when done
+                time.sleep(3)
             print("_________________________")
 
             

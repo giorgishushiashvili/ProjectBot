@@ -61,14 +61,17 @@ def Searching(client, ticker):
     # 500 changes too fast will not be able to make any profit with it.
     BuyPrice = commands.BuyPrice(depth,192)
     print("shareTotal_5000 " + str(shareTotal_5000) + " shareTotal_1000 " + str(shareTotal_1000) + " shareTotal_500 " + str(shareTotal_500) + " Price " + str(BuyPrice))
-    if shareTotal_5000 > 55 and shareTotal_1000 > 55 and shareTotal_500 > 55:
+    if shareTotal_5000 < 40 and shareTotal_1000 < 40:
         return True
     else:
         return False
     
 def WaitingForTrade(client,price,ticker,amount):
     #Get Market Price
-    depth = commands.orderBook(client,ticker,maxlimit=500)
+    depth = commands.orderBook(client,ticker,maxlimit=5000)
+    #TODO checking something delete this entry and change maxlimit for depth to 500 when done
+    marketPrice = DepthPrice(depth)
+    print(marketPrice)
     PR = commands.SellPrice(depth,amount,USDT=False)
 
     print("Price " + str(PR) + " TAKE PROFIT " + str(price * 1.02) + " Cut Losses " + str(price * 0.993))
