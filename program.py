@@ -61,7 +61,7 @@ def Searching(client, ticker):
     # 500 changes too fast will not be able to make any profit with it.
     BuyPrice = commands.BuyPrice(depth,192)
     print("shareTotal_5000 " + str(shareTotal_5000) + " shareTotal_1000 " + str(shareTotal_1000) + " shareTotal_500 " + str(shareTotal_500) + " Price " + str(BuyPrice))
-    if shareTotal_5000 < 40 and shareTotal_1000 < 40:
+    if shareTotal_5000 > 55 and shareTotal_1000 > 55:
         return True
     else:
         return False
