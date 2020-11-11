@@ -52,20 +52,14 @@ def DepthPrice(depth):
 
 
 def Searching(client, ticker):
-    depth = commands.orderBook(client,ticker,maxlimit=5000)
-    shareTotal_5000 = ShareTotal(depth,portion=5000)
-    shareTotal_1000 = ShareTotal(depth,portion=1000)
+    depth = commands.orderBook(client,ticker,maxlimit=500)
     shareTotal_500 = ShareTotal(depth,portion=500)
-    marketPrice = DepthPrice(depth)
-    print(marketPrice)
-    # 500 changes too fast will not be able to make any profit with it.
-    BuyPrice = commands.BuyPrice(depth,192)
-    print("shareTotal_5000 " + str(shareTotal_5000) + " shareTotal_1000 " + str(shareTotal_1000) + " shareTotal_500 " + str(shareTotal_500) + " Price " + str(BuyPrice))
-    if shareTotal_5000 > 55 and shareTotal_1000 > 55:
-        return True
-    else:
-        return False
     
+    BuyPrice = commands.BuyPrice(depth,192)
+    print("shareTotal_500 " + str(shareTotal_500) + " Price " + str(BuyPrice))
+    #TODO reinvent return statements for those functions
+
+#TODO look at this function and rewrite the logic
 def WaitingForTrade(client,price,ticker,amount):
     #Get Market Price
     depth = commands.orderBook(client,ticker,maxlimit=5000)
